@@ -1,12 +1,15 @@
 # SPDX-License-Identifier: Apache-2.0
 
+# The CYW43 LED device in zephyr_cyw43_led_drv.c is conflict with gpio-leds device,
+# so it do not include src/zephyr_cyw43_led_drv.c in zephyr_library_sources.
+
 if(CONFIG_WIFI_ZEPHYR_CYW43)
   if(CONFIG_USE_PICOWI_PIOSPI)
     zephyr_library_include_directories(src/ src/cyw43-driver/src/ src/cyw43-driver/firmware/)
     
     zephyr_library_sources(
       src/zephyr_cyw43_drv.c
-      src/zephyr_cyw43_led_drv.c
+      # src/zephyr_cyw43_led_drv.c
       src/zephyr_cyw43_gpio_drv.c
       src/zephyr_cyw43_shell.c
       src/cyw43-driver/src/cyw43_ll.c
@@ -21,7 +24,7 @@ if(CONFIG_WIFI_ZEPHYR_CYW43)
     
     zephyr_library_sources(
       src/zephyr_cyw43_drv.c
-      src/zephyr_cyw43_led_drv.c
+      # src/zephyr_cyw43_led_drv.c
       src/zephyr_cyw43_gpio_drv.c
       src/zephyr_cyw43_shell.c
       src/cyw43-driver/src/cyw43_ll.c
